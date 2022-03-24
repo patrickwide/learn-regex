@@ -1,0 +1,58 @@
+import urllib.request
+from re import findall
+
+url = "the url"
+
+response = urllib.request.urlopen(url)
+
+html = response.read()
+htmlstr = html.decode()
+
+pdata = findall("\(\d{3}\) \d{3}-\d{4}",htmlstr)
+
+for item in pdata:
+    print(item)
+email = "patkia@gmail.com"
+    if len(re.findall("[\w._%+-]{2,20}@[\w.-]{2,20}.[A-Za-z]{2,3}", email)):
+{
+     if request.method == "POST":
+        email= str(request.form["email"])
+        password = str(request.form["password"])
+
+        if email == "" or password == "":
+            msg = "please ensure that no field is empty"
+            return render_template("login.html",msg1 = msg)
+
+        elif len(re.findall("[\w._%+-]{2,20}@[\w.-]{2,20}.[A-Za-z]{2,3}",email)):
+
+            conn = makeConnection()
+            cur = conn.cursor()
+            sql = "SELECT * FROM users WHERE email = %s AND password_2 = %s"
+            cur.execute(sql,(email,password))
+            pass
+
+
+        elif re.search("\W[0-9]{10}",email):
+
+            conn = makeConnection()
+            cur = conn.cursor()
+            sql = "SELECT * FROM users WHERE phone = %s AND password_2 = %s"
+            cur.execute(sql,(email,password))
+
+            if cur.rowcount >=1:
+                session['username'] = email
+                return redirect("/home")
+            else:
+
+                msg = "the email/password combination is incorrect"
+                return render_template("login.html",msg1=msg)
+        else:
+
+            msg = "please log in with email or phone"
+            return render_template("login.html",msg1=msg)
+
+
+    else:
+        return render_template("login.html")
+
+}
